@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MNP 実践前の準備〜当日までの流れ</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #f5f5f0;
+    color: #1a1a1a;
+    padding: 40px 20px;
+  }
+
+  /* ===== 共通パーツ ===== */
+  .page { max-width: 760px; margin: 0 auto 80px; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+  .page-header { padding: 36px 40px 28px; position: relative; }
+  .page-content { padding: 0 40px 40px; }
+
+  .badge { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; padding: 4px 12px; border-radius: 999px; margin-bottom: 10px; }
+  .page-title { font-family: 'Noto Serif JP', serif; font-size: 28px; font-weight: 700; line-height: 1.4; margin-bottom: 8px; }
+  .page-subtitle { font-size: 14px; line-height: 1.7; }
+
+  .section { margin-bottom: 32px; }
+  .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; margin-bottom: 6px; }
+  .section h2 { font-size: 20px; font-weight: 700; margin-bottom: 14px; line-height: 1.4; }
+  .body-text { font-size: 14px; color: #444; line-height: 1.8; margin-bottom: 12px; }
+
+  .divider { border: none; border-top: 2px dashed #e0e0e0; margin: 32px 0; }
+
+  .card { border-radius: 12px; padding: 18px 20px; margin-bottom: 12px; }
+  .card-grid { display: grid; gap: 12px; margin-top: 14px; }
+  .card-grid-2 { grid-template-columns: 1fr 1fr; }
+
+  .step-list { display: flex; flex-direction: column; gap: 12px; margin-top: 14px; }
+  .step-item { display: flex; gap: 14px; align-items: flex-start; }
+  .step-num { width: 28px; height: 28px; min-width: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; margin-top: 2px; }
+  .step-content .step-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+  .step-content .step-desc { font-size: 13px; color: #555; line-height: 1.75; }
+
+  .alert-box { border-left: 4px solid; border-radius: 0 10px 10px 0; padding: 14px 18px; margin: 12px 0; font-size: 13px; line-height: 1.75; }
+
+  .summary-box { border-radius: 14px; padding: 24px 28px; margin-top: 28px; }
+
+  .tag { display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 999px; margin-right: 4px; vertical-align: middle; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  th { padding: 10px 14px; text-align: left; font-weight: 700; font-size: 12px; }
+  td { padding: 9px 14px; border-top: 1px solid #eee; vertical-align: top; }
+
+  .bg-red-light    { background: #fef2f2; border: 1px solid #fecaca; }
+  .bg-green-light  { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .bg-yellow-light { background: #fefce8; border: 1px solid #fde047; }
+
+  .link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #06C755;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-top: 10px;
+  }
+
+  /* ===== テーマ: グリーン ===== */
+  .theme-green .page-header { background: linear-gradient(135deg, #14532d 0%, #16a34a 100%); }
+  .theme-green .badge { background: rgba(255,255,255,0.2); color: #fff; }
+  .theme-green .page-title { color: #fff; }
+  .theme-green .page-subtitle { color: rgba(255,255,255,0.75); }
+  .theme-green .section-label { color: #16a34a; }
+  .theme-green .section h2 { color: #14532d; }
+  .theme-green .step-num { background: #16a34a; color: #fff; }
+  .theme-green .card { background: #f0fdf4; border: 1px solid #bbf7d0; }
+  .theme-green .card.featured { background: #dcfce7; border: 2px solid #16a34a; }
+  .theme-green .summary-box { background: #f0fdf4; border: 2px solid #bbf7d0; }
+
+  /* ===== テーマ: オレンジ ===== */
+  .theme-orange .page-header { background: linear-gradient(135deg, #7c2d12 0%, #ea580c 100%); }
+  .theme-orange .badge { background: rgba(255,255,255,0.2); color: #fff; }
+  .theme-orange .page-title { color: #fff; }
+  .theme-orange .page-subtitle { color: rgba(255,255,255,0.75); }
+  .theme-orange .section-label { color: #ea580c; }
+  .theme-orange .section h2 { color: #7c2d12; }
+  .theme-orange .step-num { background: #ea580c; color: #fff; }
+  .theme-orange .card { background: #fff7ed; border: 1px solid #fed7aa; }
+  .theme-orange .card.featured { background: #ffedd5; border: 2px solid #ea580c; }
+  .theme-orange .summary-box { background: #fff7ed; border: 2px solid #fed7aa; }
+
+  /* ===== テーマ: パープル ===== */
+  .theme-purple .page-header { background: linear-gradient(135deg, #3b0764 0%, #7c3aed 100%); }
+  .theme-purple .badge { background: rgba(255,255,255,0.2); color: #fff; }
+  .theme-purple .page-title { color: #fff; }
+  .theme-purple .page-subtitle { color: rgba(255,255,255,0.75); }
+  .theme-purple .section-label { color: #7c3aed; }
+  .theme-purple .section h2 { color: #3b0764; }
+  .theme-purple .step-num { background: #7c3aed; color: #fff; }
+  .theme-purple .card { background: #faf5ff; border: 1px solid #ddd6fe; }
+  .theme-purple .card.featured { background: #ede9fe; border: 2px solid #7c3aed; }
+  .theme-purple .summary-box { background: #faf5ff; border: 2px solid #ddd6fe; }
+
+  /* ===== テーマ: ゴールド ===== */
+  .theme-gold .page-header { background: linear-gradient(135deg, #451a03 0%, #b45309 100%); }
+  .theme-gold .badge { background: rgba(255,255,255,0.2); color: #fff; }
+  .theme-gold .page-title { color: #fff; }
+  .theme-gold .page-subtitle { color: rgba(255,255,255,0.75); }
+  .theme-gold .section-label { color: #b45309; }
+  .theme-gold .section h2 { color: #451a03; }
+  .theme-gold .step-num { background: #b45309; color: #fff; }
+  .theme-gold .card { background: #fffbeb; border: 1px solid #fde68a; }
+  .theme-gold .card.featured { background: #fef3c7; border: 2px solid #b45309; }
+  .theme-gold .summary-box { background: #fffbeb; border: 2px solid #fde68a; }
+
+  @media print {
+    .page { box-shadow: none; margin-bottom: 0; page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+
+
+<!-- ===================================== -->
+<!-- STEP 1・2  日程 & SIM作成             -->
+<!-- ===================================== -->
+<div class="page theme-green">
+  <div class="page-header">
+    <span class="badge">📅 準備ガイド — STEP 1・2</span>
+    <h1 class="page-title">日程送信 &amp;<br>SIM作成・予約番号送付</h1>
+    <p class="page-subtitle">📌 実践3日前までに完了必須。運営の指示を受けてから動くのが鉄則です。</p>
+  </div>
+  <div class="page-content">
+
+    <div class="section">
+      <div class="section-label">🟢 STEP 1</div>
+      <h2>📅 案件可能な日程を送信</h2>
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">直近1〜2週間の空き日時を送信する</div>
+            <div class="step-desc">参加できる日・時間帯をできるだけ多く共有してください。選択肢が多いほどマッチングが早くなります。</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">案件は基本的に毎週末および月曜日</div>
+            <div class="step-desc">土・日・月曜日が中心です。平日希望の方は事前にご相談ください。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">🟢 STEP 2</div>
+      <h2>📲 SIM作成 &amp; 予約番号スクショ送付</h2>
+      <p class="body-text"><strong>期限：実践3日前まで。</strong>開通・MNP予約番号の発行は<strong>必ず運営の指示後</strong>に行ってください。</p>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">公式LINEに「楽天モバイル作成」と入力</div>
+            <div class="step-desc">運営からSIM作成の手順と案件内容の案内が届きます。</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">運営の指示を受けてから開通・MNP予約番号を発行</div>
+            <div class="step-desc">指示前に開通させると、その日から通信料が発生します。必ず順番を守ってください。</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">MNP予約番号のスクリーンショットを送付</div>
+            <div class="step-desc">番号・有効期限が確認できる画面をキャプチャして運営に送ってください。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-box bg-red-light" style="border-color:#dc2626;">
+        🚨 <strong>注意：</strong>使用予定なく開通すると、その日から利用料が発生します。運営の指示があるまで開通操作は絶対に行わないでください。
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div style="font-size:12px;font-weight:700;color:#16a34a;margin-bottom:8px;">📱 楽天モバイル以外にも使えるSIM（乗り換え元として利用可）</div>
+        <div style="font-size:13px;color:#555;line-height:1.8;">
+          マイネオ / 日本通信 / リンクスメイト など
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">🟢 直前対応</div>
+      <h2>⚡ 直前にSIMが必要な場合 → ポケSIM</h2>
+      <p class="body-text">実践直前に乗り換え用SIMが必要になった場合は、<strong>ポケSIM</strong>を作成してください。申し込み後、LINEにて<strong>電話番号・MNP予約番号・有効期限</strong>が送られてきます。</p>
+
+      <div class="card featured">
+        <div style="font-size:13px;font-weight:700;color:#14532d;margin-bottom:10px;">📲 ポケSIM申し込みはこちら</div>
+        <a class="link-btn" href="https://lin.ee/qIj32qk" target="_blank">
+          <span>💬</span> LINE で申し込む → https://lin.ee/qIj32qk
+        </a>
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <div style="font-size:13px;font-weight:700;color:#16a34a;margin-bottom:8px;">📅 STEP 1・2 まとめ</div>
+      <p style="font-size:14px;color:#14532d;line-height:1.8;">
+        日程を送信 → 運営から案内が届く → <strong>指示を受けてから</strong>SIM作成・MNP番号発行 → スクリーンショット送付。<br>
+        直前で間に合わない場合は<strong>ポケSIM（LINE申し込み）</strong>を利用してください。
+      </p>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ===================================== -->
+<!-- STEP 3  持ち物の準備                  -->
+<!-- ===================================== -->
+<div class="page theme-orange">
+  <div class="page-header">
+    <span class="badge">🎒 準備ガイド — STEP 3</span>
+    <h1 class="page-title">持ち物の準備</h1>
+    <p class="page-subtitle">📋 来店前に必ず確認。1つでも欠けると契約できません。</p>
+  </div>
+  <div class="page-content">
+
+    <div class="section">
+      <div class="section-label">🟠 全員必須 3点</div>
+      <h2>🪪 当日に必要なもの</h2>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">①</div>
+          <div class="step-content">
+            <div class="step-title">🪪 身分証明書（本人 &amp; 利用者全員分）</div>
+            <div class="step-desc">
+              <strong>運転免許証</strong> または <strong>マイナンバーカード</strong>（顔写真付き）<br>
+              本人分だけでなく、利用者登録をする家族全員分が必要です。
+            </div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">②</div>
+          <div class="step-content">
+            <div class="step-title">💳 クレジットカード または キャッシュカード</div>
+            <div class="step-desc">月々の通信料金の支払いに使用。<strong>本人名義のもの</strong>を必ず持参してください。</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">③</div>
+          <div class="step-content">
+            <div class="step-title">📄 利用者登録の書類（家族分）</div>
+            <div class="step-desc">
+              ・ご家族の<strong>身分証原本</strong>（免許証 or マイナンバーカード）<br>
+              ・<strong>住民票 または 戸籍謄本</strong>（原本）
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-box bg-red-light" style="border-color:#dc2626;">
+        🚨 <strong>絶対必須！</strong>この3点のうち1つでも欠けていると、その日の契約は成立しません。来店前日までに全書類を必ず確認してください。
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">🟠 案件別の注意</div>
+      <h2>⚠️ クレカに関する案件別ルール</h2>
+
+      <div class="card-grid card-grid-2">
+        <div class="card featured">
+          <div style="font-size:11px;font-weight:700;color:#ea580c;margin-bottom:6px;">🔴 クレカ必須案件</div>
+          <div style="font-weight:700;font-size:14px;margin-bottom:6px;">ビックローブ・IIJ案件</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;"><strong>クレジットカード持参の方のみ参加可能</strong>です。持っていない場合は事前にご相談ください。</div>
+        </div>
+        <div class="card">
+          <div style="font-size:11px;font-weight:700;color:#92400e;margin-bottom:6px;">⚠️ クレカなしの場合</div>
+          <div style="font-weight:700;font-size:14px;margin-bottom:6px;">他案件（条件あり）</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;">当日、代金の<strong>立て替えが発生する場合</strong>があります。事前に運営へご確認ください。</div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">🟠 利用者登録について</div>
+      <h2>👥 利用者登録の仕組み</h2>
+      <p class="body-text">
+        利用者登録とは、<strong>三親等以内の家族の身分証を登録すること</strong>です。<br>
+        登録すると<strong>契約可能な回線数が増える</strong>メリットがあります。
+      </p>
+
+      <div class="card featured">
+        <div style="font-size:13px;font-weight:700;color:#7c2d12;margin-bottom:10px;">📋 三親等以内の家族の範囲</div>
+        <div style="font-size:13px;color:#555;line-height:2.0;">
+          曽祖父母 / 祖父母 / 父母 / 子 / 孫 / ひ孫<br>
+          兄弟姉妹 / 甥・姪 / おじ・おば
+        </div>
+      </div>
+
+      <div class="card-grid card-grid-2" style="margin-top:12px;">
+        <div class="card">
+          <div style="font-size:12px;font-weight:700;color:#ea580c;margin-bottom:6px;">✅ 登録しても変わらないこと</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;">家族への<strong>連絡・郵送物はありません</strong>。日常生活への影響は一切なし。</div>
+        </div>
+        <div class="card">
+          <div style="font-size:12px;font-weight:700;color:#ea580c;margin-bottom:6px;">📈 登録するメリット</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;"><strong>契約可能な回線数が増加</strong>します。複数回線での実践が可能になります。</div>
+        </div>
+      </div>
+
+      <div class="alert-box bg-yellow-light" style="border-color:#ca8a04; margin-top:4px;">
+        💡 詳細は公式LINEの<strong>よくある質問「★利用者登録の書類とはなんですか？」</strong>もご参照ください。
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <div style="font-size:13px;font-weight:700;color:#ea580c;margin-bottom:8px;">🎒 STEP 3 まとめ</div>
+      <p style="font-size:14px;color:#7c2d12;line-height:1.9;">
+        ① <strong>身分証</strong>（本人・利用者全員分）<br>
+        ② <strong>クレカ or キャッシュカード</strong>（ビックローブ・IIJ案件はクレカ必須）<br>
+        ③ <strong>利用者登録書類</strong>（家族の身分証原本 ＋ 住民票 or 戸籍謄本）
+      </p>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ===================================== -->
+<!-- STEP 4・5・6  委任状・滞納・SIMロック  -->
+<!-- ===================================== -->
+<div class="page theme-purple">
+  <div class="page-header">
+    <span class="badge">📝 準備ガイド — STEP 4・5・6</span>
+    <h1 class="page-title">委任状・滞納確認・<br>SIMロック解除</h1>
+    <p class="page-subtitle">🔍 該当する方は必ず事前に対応してください。見落としが当日のトラブルにつながります。</p>
+  </div>
+  <div class="page-content">
+
+    <div class="section">
+      <div class="section-label">🟣 STEP 4</div>
+      <h2>📝 委任状 <span class="tag" style="background:#ede9fe;color:#5b21b6;">代理契約の場合のみ</span></h2>
+      <p class="body-text">委任状が必要なのは、<strong>家族の名義で代理契約する場合のみ</strong>です。自分名義のみの契約には不要です。</p>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">代理契約とは？</div>
+            <div class="step-desc">自分名義の乗り換え元SIMを使いながら、<strong>追加でご家族の名義分を契約すること</strong>です。回線枠を増やす有効な方法です。</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">家族も実践したい場合</div>
+            <div class="step-desc">ご家族も実践される場合は<strong>一度お問い合わせください</strong>。最適な方法をご案内します。</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">過去の契約状況を事前に再確認</div>
+            <div class="step-desc">所持しているすべての回線について、過去に契約したものがないかを確認し、<strong>事前に運営へお知らせください</strong>。案件が行えない場合がある為。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">🟣 STEP 5</div>
+      <h2>🔍 滞納履歴の確認</h2>
+      <p class="body-text">以下の<strong>すべての項目</strong>について、滞納履歴の有無を必ず再確認してください。</p>
+
+      <div class="card featured" style="margin-bottom:14px;">
+        <div style="font-size:13px;font-weight:700;color:#3b0764;margin-bottom:10px;">🔎 確認が必要な項目</div>
+        <div class="step-list" style="margin-top:0;">
+          <div class="step-item">
+            <div class="step-num" style="width:22px;height:22px;min-width:22px;font-size:11px;">📱</div>
+            <div class="step-content">
+              <div class="step-desc">携帯キャリアの通信料金（メイン・サブ回線すべて）</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num" style="width:22px;height:22px;min-width:22px;font-size:11px;">📡</div>
+            <div class="step-content">
+              <div class="step-desc">自宅Wi-Fi・インターネット回線の料金</div>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num" style="width:22px;height:22px;min-width:22px;font-size:11px;">💳</div>
+            <div class="step-content">
+              <div class="step-desc">クレジットカードの支払い</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-grid card-grid-2">
+        <div class="card bg-red-light">
+          <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:6px;">❌ 3ヶ月以上の滞納履歴あり</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;"><strong>案件不可の可能性</strong>があります。必ず事前に運営へご相談ください。</div>
+        </div>
+        <div class="card bg-red-light">
+          <div style="font-size:12px;font-weight:700;color:#991b1b;margin-bottom:6px;">⏸️ 現在滞納中</div>
+          <div style="font-size:13px;color:#555;line-height:1.7;"><strong>完済後に案件参加が可能</strong>になります。まず滞納を解消してから参加してください。</div>
+        </div>
+      </div>
+
+      <div class="alert-box bg-red-light" style="border-color:#dc2626;">
+        🚨 <strong>重要：</strong>所持しているすべての回線（メイン・サブ問わず）について、滞納履歴の有無を<strong>必ず再度ご確認ください</strong>。
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">🟣 STEP 6</div>
+      <h2>🔓 SIMロック解除 <span class="tag" style="background:#ede9fe;color:#5b21b6;">必要な方のみ</span></h2>
+      <p class="body-text">開通・稼働確認のため、SIMロックがかかっている端末をお使いの方は事前に解除が必要です。</p>
+
+      <div class="step-list">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">公式LINEに「SIMロック解除」と入力</div>
+            <div class="step-desc">端末が対象かどうかも含めて、運営が手順をご案内します。</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="alert-box bg-yellow-light" style="border-color:#ca8a04;">
+        💡 2021年10月以降に発売された端末はSIMロック解除不要（総務省規制によりSIMフリー義務化）。それ以前の端末・中古品は要確認です。
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <div style="font-size:13px;font-weight:700;color:#7c3aed;margin-bottom:8px;">📝 STEP 4・5・6 まとめ</div>
+      <p style="font-size:14px;color:#3b0764;line-height:1.9;">
+        📝 <strong>委任状：</strong>家族名義の代理契約をする場合のみ必要<br>
+        🔍 <strong>滞納確認：</strong>キャリア / Wi-Fi / クレカ の全回線をチェック<br>
+        🔓 <strong>SIMロック解除：</strong>古い端末・中古端末を使う方は対応を
+      </p>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ===================================== -->
+<!-- ポケSIM 申請注意事項                   -->
+<!-- ===================================== -->
+<div class="page theme-gold">
+  <div class="page-header">
+    <span class="badge">🚨 準備ガイド — ポケSIM申請注意事項</span>
+    <h1 class="page-title">ポケSIM申請の<br>締め切り・料金</h1>
+    <p class="page-subtitle">⏰ 締め切りを過ぎると追加料金が発生します。必ず期限内に申請してください。</p>
+  </div>
+  <div class="page-content">
+
+    <div class="section">
+      <div class="section-label">🟡 申し込み</div>
+      <h2>📦 ポケSIMとは・申し込み方法</h2>
+      <p class="body-text">実践直前に乗り換え用SIMが必要になった場合に使える専用SIMです。申し込み後、<strong>LINEにて電話番号・MNP予約番号・有効期限</strong>が届きます。</p>
+
+      <div class="card featured" style="text-align:center;padding:22px 20px;">
+        <div style="font-size:13px;font-weight:700;color:#b45309;margin-bottom:12px;">📲 申し込みはLINEから</div>
+        <a class="link-btn" href="https://lin.ee/qIj32qk" target="_blank" style="justify-content:center;">
+          <span>💬</span> LINE で申し込む → https://lin.ee/qIj32qk
+        </a>
+        <div style="font-size:12px;color:#92400e;margin-top:10px;">1度に5回線まで注文可能</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">🟡 締め切り</div>
+      <h2>⏰ 申請・入金の締め切り日</h2>
+      <p class="body-text">実践日によって締め切りが異なります。<strong>遅れると緊急対応費が加算</strong>されるため、必ず期限内に申請してください。</p>
+
+      <table>
+        <tr style="background:#fef3c7;">
+          <th>実践日</th>
+          <th>申請・入金の締め切り</th>
+        </tr>
+        <tr>
+          <td>🗓️ 土曜日実践</td>
+          <td><strong>水曜日まで</strong>に入金と必要回線数の申請</td>
+        </tr>
+        <tr>
+          <td>🗓️ 日曜日実践</td>
+          <td><strong>木曜日まで</strong>に入金と必要回線数の申請</td>
+        </tr>
+      </table>
+    </div>
+
+    <hr class="divider">
+
+    <div class="section">
+      <div class="section-label">🟡 料金</div>
+      <h2>💴 ポケSIM料金（緊急時は追加料金あり）</h2>
+
+      <div class="card-grid card-grid-2">
+        <div class="card featured" style="text-align:center;">
+          <div style="font-size:11px;font-weight:700;color:#b45309;margin-bottom:6px;">✅ 通常料金（期限内申請）</div>
+          <div style="font-size:36px;font-weight:700;color:#451a03;line-height:1;">3,850<span style="font-size:16px;">円</span></div>
+          <div style="font-size:12px;color:#92400e;margin-top:4px;">/ 1回線</div>
+        </div>
+        <div class="card bg-red-light" style="text-align:center;">
+          <div style="font-size:11px;font-weight:700;color:#991b1b;margin-bottom:6px;">⚠️ 緊急対応（前日・当日申請）</div>
+          <div style="font-size:36px;font-weight:700;color:#dc2626;line-height:1;">4,950<span style="font-size:16px;">円</span></div>
+          <div style="font-size:12px;color:#991b1b;margin-top:4px;">/ 1回線（+1,100円 緊急対応費）</div>
+        </div>
+      </div>
+
+      <div class="alert-box" style="background:#fef2f2;border:1px solid #fecaca;border-color:#dc2626;margin-top:14px;">
+        🚨 <strong>案件実施日の前日・当日の申請</strong>は、正規料金3,850円に<strong>緊急対応費 +1,100円/回線</strong>が加算され、合計 <strong>4,950円/回線</strong>になります。
+      </div>
+    </div>
+
+    <div class="summary-box">
+      <div style="font-size:13px;font-weight:700;color:#b45309;margin-bottom:8px;">📦 ポケSIM まとめ</div>
+      <p style="font-size:14px;color:#451a03;line-height:1.9;">
+        🔗 <strong>申し込み：</strong><a href="https://lin.ee/qIj32qk" style="color:#b45309;">https://lin.ee/qIj32qk</a>（LINEで申請・1度に5回線まで）<br>
+        📅 <strong>土曜実践 → 水曜まで / 日曜実践 → 木曜まで</strong><br>
+        💴 <strong>通常：3,850円/回線 → 緊急時（前日・当日）：4,950円/回線</strong>
+      </p>
+    </div>
+
+  </div>
+</div>
+
+
+</body>
+</html>
